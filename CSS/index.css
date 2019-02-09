@@ -302,3 +302,27 @@ body {
   width: 100%;
   display: none;
 }
+.carousel img.slideFromLeft {
+  animation-duration: 1s;
+  animation-name: slideInLeft;
+}
+.carousel img.slideFromRight {
+  animation-duration: 1s;
+  animation-name: slideInRight;
+}
+@keyframes slideInLeft {
+  from {
+    margin-left: 200%;
+  }
+  to {
+    margin-left: 0%;
+  }
+}
+@keyframes slideInRight {
+  from {
+    margin-right: 200%;
+  }
+  to {
+    margin-right: 0%;
+  }
+}

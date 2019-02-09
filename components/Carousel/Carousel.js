@@ -13,12 +13,20 @@ class Carousel {
     });
     this.leftBtn.addEventListener('click', () => {
       this.decreaseIdx();
-      this.displayCurrIdx();
+      this.displayCurrIdx('slideFromRight');
     });
   }
-  displayCurrIdx() {
+  displayCurrIdx(direction = 'slideFromLeft') {
     this.images.forEach(e => e.style.display = 'none');
-    this.images[this.currentIdx].style.display = 'flex';
+
+    this.images.forEach(e => e.classList.remove('slideFromLeft'));
+
+    this.images.forEach(e => e.classList.remove('slideFromRight'));
+
+    let currImg = this.images[this.currentIdx];
+    currImg.style.display = 'flex';
+    currImg.classList.add(direction);
+    console.log(currImg.classList);
   }
   increaseIdx() {
     this.currentIdx += 1;
