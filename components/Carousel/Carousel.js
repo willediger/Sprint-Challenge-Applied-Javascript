@@ -1,8 +1,50 @@
 class Carousel {
+  constructor(carouselNode) {
+    this.element = carouselNode;
+    this.leftBtn = this.element.querySelector('.left-button');
+    this.rightBtn = this.element.querySelector('.right-button');
+    this.images = this.element.querySelectorAll('img');
+    this.currentIdx = 0;
+    this.maxIdx = this.images.length - 1;
+    this.displayCurrIdx();
+    this.rightBtn.addEventListener('click', () => {
+      this.increaseIdx();
+      this.displayCurrIdx();
+    });
+    this.leftBtn.addEventListener('click', () => {
+      this.decreaseIdx();
+      this.displayCurrIdx('slideFromRight');
+    });
+  }
+  displayCurrIdx(direction = 'slideFromLeft') {
+    this.images.forEach(e => e.style.display = 'none');
 
+    this.images.forEach(e => e.classList.remove('slideFromLeft'));
+
+    this.images.forEach(e => e.classList.remove('slideFromRight'));
+
+    let currImg = this.images[this.currentIdx];
+    currImg.style.display = 'flex';
+    currImg.classList.add(direction);
+    console.log(currImg.classList);
+  }
+  increaseIdx() {
+    this.currentIdx += 1;
+    if (this.currentIdx > this.maxIdx) {
+      this.currentIdx = 0;
+    }
+  }
+  decreaseIdx() {
+    this.currentIdx -= 1;
+    if (this.currentIdx < 0) {
+      this.currentIdx = this.maxIdx;
+    }
+  }
 }
 
-let carousel = document.querySelector();
+let carousel = document.querySelector('.carousel');
+
+carousel = new Carousel(carousel);
 
 /* If You've gotten this far, you're on your own! Although we will give you some hints:
     1. You will need to grab a reference to the carousel, and in it grab the laft and right buttons
